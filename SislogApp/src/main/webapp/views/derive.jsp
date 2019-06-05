@@ -49,13 +49,6 @@
                                 </div>
                                 <span class="layui-form-label">是否成功</span>
 
-<%--
-                                <div class="layui-form-item">
-
-                                </div>--%>
-
-
-
                                 <div class="layui-input-inline title-input">
                                     <select name="accessingPathWay">
                                         <option value="">访问方式</option>
@@ -85,17 +78,17 @@
                         <div class="layui-row">
                             <div class="layui-col-md4 layui-col-space10 layui-col-xs10"style="display: flex; flex-direction:row-reverse;align-items:center;height:52px;">
                                 <div class="layui-input-inline title-input">
-                                    IP：<span  id="countMap">123</span>
+                                    IP：<span  id="countMap"></span>
                                     条
-                                </div>
+                                </div>&nbsp&nbsp
                                  <div class="layui-input-inline title-input">
-                                     用户：<span  id="countUser">123</span>
+                                     用户：<span  id="countUser"></span>
                                      条
-                                 </div>
+                                 </div>&nbsp&nbsp
                                  <div class="layui-input-inline title-input">
-                                     数据：<span  id="sumdata">123</span>
+                                     数据：<span  id="sumdata"></span>
                                      条
-                                 </div>
+                                 </div>&nbsp&nbsp
 
                             </div>
                             <div class="layui-col-md8 "></div>

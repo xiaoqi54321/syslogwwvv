@@ -33,9 +33,9 @@
               <i class="layui-icon layui-icon-refresh-3"></i>
             </a>
           </li>
-          <li class="layui-nav-item layui-hide-xs" lay-unselect>
+         <%-- <li class="layui-nav-item layui-hide-xs" lay-unselect>
             <input type="text" placeholder="资产搜索..." autocomplete="off" class="layui-input layui-input-search" layadmin-event="serach" lay-action="./views/asset/list.jsp?address="> 
-          </li>
+          </li>--%>
         </ul>
         <ul class="layui-nav layui-layout-right" lay-filter="layadmin-layout-right">
           <li class="layui-nav-item layui-hide-xs" lay-unselect>
@@ -66,25 +66,26 @@
           </div>
           
           <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
+
+
             <li data-name="workbench" data-jump="system/get" class="layui-nav-item layui-this layui-nav-itemed">
 
-              <a href="javascript:" lay-href="system/get" lay-tips="sys查询" lay-direction="2"> <i class="layui-icon layui-icon-auz"></i> <cite>sys查询</cite> </a>
+              <a href="javascript:" lay-href="../views/derive.jsp" lay-tips="sys查询" lay-direction="2">
+                <i class="layui-icon layui-icon-auz"></i>
+                <cite>sys查询</cite>
+              </a>
             </li>
-           <%--   <a href="javascript:;" lay-tips="" lay-direction="2">
-                <i class="layui-icon layui-icon-component"></i>
-                <cite>工作台</cite>
-              </a>--%>
-           <%--   <dl class="layui-nav-child">
-                <dd data-name="workbench-index" class="layui-this">
-                  <a lay-href="./views/derive.jsp">工作台</a>
-                </dd>
-              </dl>--%>
 
-              <li data-name="workbench" data-jump="system/get" class="layui-nav-item layui-this layui-nav-itemed">
+            <li data-name="workbench" data-jump="system/get" class="layui-nav-item layui-this layui-nav-itemed">
 
-                  <a href="./views/control.jsp" lay-href="system/get" lay-tips="sys监控" lay-direction="2"> <i class="layui-icon layui-icon-auz"></i> <cite>sys查询</cite> </a>
+              <a href="javascript:;" lay-href="./views/control.jsp" lay-tips="sys监控" lay-direction="2">
+                <i class="layui-icon layui-icon-auz"> </i>
+                <cite>sys监控</cite>
+              </a>
 
-              </li>
+            </li>
+
+
           </ul>
         </div>
       </div>

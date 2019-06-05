@@ -30,11 +30,30 @@ layui.define(function (e) {
 			'intranetPort': form.find('input[name=intranetPort]').val(),
 			'startStatus':thisTime
 		}
-		//alert(JSON.stringify(that.map));
+
 		that.tableid = "id-table-database-cve";
 		return that;
 	}
 
+	function calculateDiffTime(start_time, end_time){
+		//var startTime = 0, endTime = 0
+		if (start_time < end_time){
+			startTime = start_time
+			endTime = end_time
+		}else{
+			startTime = end_time
+			endTime = start_time
+		}
+
+		var timeDiff = endTime - startTime
+		var hour = Math.floor(timeDiff / 3600);
+		timeDiff = timeDiff % 3600;
+		var minute = Math.floor(timeDiff / 60);
+		timeDiff = timeDiff % 60;
+		var second = timeDiff;
+		//[hour, minute, second]
+		return hour+"时"+minute+"分"+second+"秒"
+	}
 	const initPageRender = function (requestRender) {
 
 		const $ = layui.$;
@@ -59,13 +78,19 @@ layui.define(function (e) {
 			defaultToolbar: ['exports'], //工具栏右侧按钮，默认['filter','exports','print']
 			url: '../view/deriveControl', //数据请求URL
 			parseData: function(res){ //res 即为原始返回的数据
-			return {
-				"code": res.code, //解析接口状态
-				"msg": res.msg, //解析提示文本
-				"count": res.total, //解析数据长度
-				"data": res.data //解析数据列表
-			};
-		},
+
+				$('#countMap').html(res.data.countIp);
+				$('#countUser').html(res.data.countUser);
+				$('#sumdata').html(res.data.sumdata);
+				return {
+
+					"code": res.code, //解析接口状态
+					"msg": res.msg, //解析提示文本
+					"count": res.total, //解析数据长度
+					"data": res.data.syslogList //解析数据列表
+
+				};
+			},
 			cols: [[{
 				field: 'ReceivedAt',
 				title: '访问时间',
@@ -134,18 +159,16 @@ layui.define(function (e) {
             done:function(res, curr, count){
                 //如果是异步请求数据方式，res即为你接口返回的信息。
                 //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
-                //IP
-                $('#countMap').html(res.countMap);
-                //User
-                $('#countUser').html(res.countUser);
-
-                //得到数据总量
-                $('#sumdata').html(res.count);
             }
         });
         var sts;
 		var t1 ;
 			$('.layui-btn.btn-search-stop').click(function () {
+
+				var thisTime=new Date().getTime();
+				var tme =calculateDiffTime(sts,thisTime);
+				$("#datatimeRun").html(tme);
+				console.log(sts);
 			//去掉定时器的方法
 			window.clearTimeout(t1);
 			//显示查询按钮

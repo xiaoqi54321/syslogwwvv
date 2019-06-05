@@ -75,4 +75,7 @@ layui.use(['index', 'helper', 'element'], function () {
 			window.location = './login.jsp';
 		});
 	});
+
+
+
 });

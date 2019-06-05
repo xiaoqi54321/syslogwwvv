@@ -63,11 +63,14 @@ layui.define(function (e) {
 			defaultToolbar: ['exports'], //工具栏右侧按钮，默认['filter','exports','print']
 			url: '../view/deriveList', //数据请求URL
 			parseData: function(res){ //res 即为原始返回的数据
+				$('#countMap').html(res.data.countIp);
+				$('#countUser').html(res.data.countUser);
+				$('#sumdata').html(res.data.sumdata);
 			return {
 				"code": res.code, //解析接口状态
 				"msg": res.msg, //解析提示文本
 				"count": res.total, //解析数据长度
-				"data": res.data //解析数据列表
+				"data": res.data.syslogList //解析数据列表
 			};
 		},
 			cols: [[{
@@ -131,8 +134,15 @@ layui.define(function (e) {
 				}
 
 			]],
+			limits:[100,200,500,1000,2000],
+			limit:100,
 			page: true, //开启分页
-			where: params().map
+			where: params().map,
+			done:function(res, curr, count){
+				//如果是异步请求数据方式，res即为你接口返回的信息。
+				//如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
+
+			}
 		});
 		//查询
 		$('.layui-btn.btn-search').click(function () {

@@ -24,7 +24,7 @@ public class SyslogServiceImpl implements SyslogService {
     @Override
     public Map<String, Object> list(Map paginator) throws Exception {
         Map<String, Object> resultList =new HashMap<String, Object>();
-
+        Map<String, Object> map =new HashMap<String, Object>();
         int total= syslogDao.countSyslogList(paginator);
         int startindex=(Integer.valueOf(paginator.get("paginator.page").toString())-1)*Integer.valueOf(paginator.get("paginator.limit").toString());
         int sumPages=total/Integer.valueOf(paginator.get("paginator.limit").toString());
@@ -34,11 +34,17 @@ public class SyslogServiceImpl implements SyslogService {
 
         List<Map<String,Object>> syslogList= syslogDao.list(paginator);
 
-        resultList.put("data",syslogList);
+        Map<String,Object> countMap= syslogDao.countDataBySearch(paginator);
+        map.put("sumdata",countMap.get("sumdata").toString()); //监控到的记录数量
+        map.put("countUser",countMap.get("countUser").toString());//监控到的用户数量
+        map.put("countIp",countMap.get("countIp").toString());//监控到的ip数量
+        map.put("syslogList",syslogList);
+        resultList.put("data",map);
         resultList.put("total",total);
         resultList.put("code",0);
         resultList.put("msg","");
         return resultList;
+
 
     }
 
@@ -47,6 +53,7 @@ public class SyslogServiceImpl implements SyslogService {
         Map<String, Object> resultList =new HashMap<String, Object>(); //用来存放结果的map集合
         String intranetIpc = paginator.get("intranetIp").toString();
         String intranetPortc = paginator.get("intranetPort").toString();
+        Map<String, Object> map2 =new HashMap<String, Object>(); //用来存放结果的map集合
 
 
         if( paginator.get("intranetIp").toString().equals("")==true){
@@ -103,15 +110,16 @@ public class SyslogServiceImpl implements SyslogService {
             if(startStatus.equals("stopControl")){//监控结束
                 jiluIp.remove(intranetIpc);
             }
-            resultList.put("sumdata",countMap.get("sumdata").toString()); //监控到的记录数量
-            resultList.put("countUser",countMap.get("countUser").toString());//监控到的用户数量
-            resultList.put("countIp",countMap.get("countIp").toString());//监控到的ip数量
+            map2.put("sumdata",countMap.get("sumdata").toString()); //监控到的记录数量
+            map2.put("countUser",countMap.get("countUser").toString());//监控到的用户数量
+            map2.put("countIp",countMap.get("countIp").toString());//监控到的ip数量
         }
 
-
-        resultList.put("data",syslogList);
+        map2.put("syslogList",syslogList);
+        resultList.put("data",map2);
         resultList.put("total",total);
         resultList.put("code",0);
+
         resultList.put("msg","");
         return resultList;
 

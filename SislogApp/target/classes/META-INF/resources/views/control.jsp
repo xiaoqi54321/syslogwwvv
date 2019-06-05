@@ -45,20 +45,30 @@
                                  </select>
                                 </div>
 
-                                <div class="layui-input-inline title-input">
-                                    IP：<span  id="countMap">123</span>
-                                    条
-                                </div>
-                                <div class="layui-input-inline title-input">
-                                    用户：<span  id="countUser">123</span>
-                                    条
-                                </div>
-                                <div class="layui-input-inline title-input">
-                                    数据：<span  id="sumdata">123</span>
-                                    条
-                                </div>
+
                             </div>
 
+                        </div>
+                        <div class="layui-row">
+                            <div class="layui-col-md4 layui-col-space10 layui-col-xs10"style="display: flex; flex-direction:row-reverse;align-items:center;height:52px;">
+                                <div class="layui-input-inline title-input">
+                                    IP：<span  id="countMap"></span>
+                                    条
+                                </div>&nbsp&nbsp
+                                <div class="layui-input-inline title-input">
+                                    用户：<span  id="countUser"></span>
+                                    条
+                                </div>&nbsp&nbsp
+                                <div class="layui-input-inline title-input">
+                                    数据：<span  id="sumdata"></span>
+                                    条
+                                </div>&nbsp&nbsp
+                                <div class="layui-input-inline title-input">
+                                    运行监控时间：<span  id="datatimeRun"></span>
+                                    条
+                                </div>&nbsp&nbsp
+                            </div>
+                            <div class="layui-col-md8 "></div>
                         </div>
                     </div>
                     <div class="layui-card-body">

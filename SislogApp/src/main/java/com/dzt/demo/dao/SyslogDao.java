@@ -22,4 +22,6 @@ public interface SyslogDao {
     int countControl(Map<String, Object> paginator) throws Exception;
 
     Map<String, Object> countData(Map<String, Object> map);
+
+    Map<String, Object> countDataBySearch(Map paginator);
 }
